@@ -76,33 +76,38 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> callApi() async {
-    var res =
-        await http.post(Uri.parse("http://192.168.0.105:4000/test"), body: {
-      'rollno': _scanBarcode,
-    });
+    var res = await http.post(
+        Uri.parse(
+            "http://192.168.29.192/Access-Ace/Entry-Exit-System/send_data.php"),
+        body: {
+          'test1': _scanBarcode,
+        });
     print("req sendt");
+
     var data = jsonDecode(res.body);
+    print("Dattaaaaaaaaaaaaaaaaaaaaaa");
+    print(data);
     print(jsonDecode(res.body));
     if (data == true) {
       Fluttertoast.showToast(
           msg: "Success",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
-      print((res.body));
+      // print((res.body));
     } else {
       Fluttertoast.showToast(
           msg: "Not Scanned",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-      print((res.body));
+      // print((res.body));
     }
   }
 
